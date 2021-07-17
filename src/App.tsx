@@ -18,7 +18,7 @@ function App() {
           { range.map((e: any): JSX.Element => (
               <div id={"pieSlice" + e} className="hold">
                 <div className={"slice-name" + e}>
-                  <div>{ `test${e}` }</div>
+                  <div className="slice-text">{ `test${e}` }</div>
                 </div>
                 <div className={`wheel-part ${(e % 2 === 0) ? "background-blue" : "background-red"}`}>
                 </div>
@@ -27,9 +27,11 @@ function App() {
           }
         </div>
       </div>
-      <button className="button is-primary" onClick={() => {
-        setSpin(generateRandomSpin());
-      }}>Spin</button>
+      <div className="mt-3 is-centered">
+        <button className="button is-link is-rounded" onClick={() => {
+          setSpin(generateRandomSpin());
+        }}>Spin</button>
+      </div>
     </div>
   );
 }
