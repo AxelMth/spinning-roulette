@@ -1,0 +1,84 @@
+.wheel-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.wheel {
+  border-radius: 50%;
+  height: 500px;
+  width: 500px;
+}
+
+.hold {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  clip: rect(0px, 500px, 500px, 251px);
+}
+
+.wheel-part {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 100%;
+  clip: rect(0px, 250px, 500px, 0px);
+}
+
+@for $i from 0 to 10 {
+  #pieSlice#{$i + 1} {
+    transform: rotate($i * 36deg);
+  }
+
+  #pieSlice#{$i + 1} .wheel-part {
+    transform: rotate(36deg);
+  }
+
+  .slice-name#{$i + 1} {
+    position: absolute;
+    transform: rotate(18deg);
+    height: 500px;
+    width: 500px;
+    z-index: 1;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    clip: rect(0px, 280px, 250px, 220px);
+  }
+}
+
+@for $i from 1 to 50 {
+  @keyframes spin-#{$i} {
+    to {
+      transform: rotate((20 + $i) * 36deg + 18deg);
+    }
+  }
+
+  .spin-animation-#{$i} {
+    animation: spin-#{$i};
+    animation-duration: 2500ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+  }
+}
+
+.background-blue {
+  background-color: blue;
+}
+
+.background-red {
+  background-color: red;
+}
+
+.wheel-cursor-container {
+  left: calc(50% - 1rem);
+  position: absolute;
+  z-index: 10;
+}
+
+.wheel-text {
+  color: white;
+}
