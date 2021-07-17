@@ -21,7 +21,11 @@ function App() {
   const [spin, setSpin] = useState<number>(0);
   return (
     <>
-      {RESTAURANTS.map((restaurant: any): JSX.Element => <div>{restaurant}</div>)}
+      <div className="container is-max-desktop">
+        <div className="columns is-multiline is-centered">
+          {RESTAURANTS.map((restaurant: any): JSX.Element => <div className="column is-full">{restaurant}<hr/></div>)}
+        </div>
+      </div>
       <div className="container">
         <div className="wheel-cursor-container">
           <i className="fas fa-caret-down fa-3x"></i>
