@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import List from './components/List';
 import SpinningRoulette from './components/SpinningRoulette';
 
@@ -15,12 +15,33 @@ const RESTAURANTS = [
 ];
 
 function App() {
+  const intialState = Array(RESTAURANTS.length).fill(true);
+  const [areChecked, setAreChecked] = useState(intialState);
+  const elementsWithForm = RESTAURANTS.map((e, i) => {
+    return {
+      label: e,
+      type: 'checkbox',
+      isChecked: areChecked[i],
+      setIsChecked: () => {
+        const areCheckedCloned = JSON.parse(JSON.stringify(areChecked));
+        areCheckedCloned[i] = !areCheckedCloned[i];
+        setAreChecked(areCheckedCloned);
+      }
+    }
+  });
+  const checkedElements = elementsWithForm.filter(e => e.isChecked);
   return (
-    <div className="is-flex" style={{ alignItems: 'stretch' }}>
-      <div style={{ width: '30%', height: '100%' }}>
-        <List title="Liste des restaurants" elements={RESTAURANTS}></List>
+    <div className="columns is-multiline is-centered">
+      <div className="column is-one-quarter">
+        <List
+          title="Liste des restaurants"
+          elements={elementsWithForm}
+          reset={() => setAreChecked(intialState)}
+        ></List>
       </div>
-      <SpinningRoulette elements={RESTAURANTS}></SpinningRoulette>
+      <div className="column is-three-quarters">
+        <SpinningRoulette elements={checkedElements}></SpinningRoulette>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,4 @@
-.wheel-container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding-top: 25px;
-}
-
-.wheel {
+.roulette {
   border-radius: 50%;
   height: 500px;
   width: 500px;
@@ -18,7 +11,7 @@
   clip: rect(0px, 500px, 500px, 251px);
 }
 
-.wheel-part {
+.roulette-part {
   position: absolute;
   width: 500px;
   height: 500px;
@@ -30,11 +23,11 @@ $maxNumberOfItems: 15;
 @for $numberOfItems from 1 to $maxNumberOfItems {
   $sliceAngle: 360deg / $numberOfItems;
   @for $i from 0 to $numberOfItems {
-    #pieSlice-#{$numberOfItems}-#{$i + 1} {
+    #slice-#{$numberOfItems}-#{$i + 1} {
       transform: rotate($i * $sliceAngle);
     }
 
-    #pieSlice-#{$numberOfItems}-#{$i + 1} .wheel-part {
+    #slice-#{$numberOfItems}-#{$i + 1} .roulette-part {
       transform: rotate($sliceAngle);
     }
 
@@ -69,21 +62,15 @@ $maxNumberOfItems: 15;
 }
 
 .background-blue {
-  background-color: #ebf0fc;
+  background-color: darken(#ebf0fc, 20%);
 }
 
 .background-red {
-  background-color: #fdeef1;
+  background-color: darken(#fdeef1, 20%);
 }
 
 .background-green {
-  background-color: #ebf8f3;
-}
-
-.wheel-cursor-container {
-  left: calc(50% - 1rem);
-  position: absolute;
-  z-index: 10;
+  background-color: darken(#ebf8f3, 20%);
 }
 
 .slice-text {

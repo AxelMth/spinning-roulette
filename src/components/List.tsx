@@ -1,30 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 interface Props {
   title: string;
-  elements: string[];
+  elements: any[];
+  reset: () => void;
 }
 
-const List = ({title, elements}: Props) => {
-  const [areChecked, setAreChecked] = useState(Array(elements.length).fill(false));
-  const elementsWithForm = elements.map((e, i) => {
-    return {
-      label: e,
-      type: 'checkbox',
-      isChecked: areChecked[i],
-      setIsChecked: () => {
-        const areCheckedCloned = JSON.parse(JSON.stringify(areChecked));
-        areCheckedCloned[i] = !areCheckedCloned[i];
-        setAreChecked(areCheckedCloned);
-      }
-    }
-  });
+const List = ({title, elements, reset}: Props) => {
   return (
-    <nav className="panel">
-      <p className="panel-heading is-link">
+    <nav className="panel is-link is-shadowless">
+      <p className="panel-heading is-radiusless">
         {title}
       </p>
-      {elementsWithForm.map(element => (
+      {elements.map(element => (
         <label className="panel-block">
           <input type={element.type} checked={element.isChecked} onChange={() => element.setIsChecked()} />
           {element.label}
@@ -32,8 +20,8 @@ const List = ({title, elements}: Props) => {
       ))}
       <div className="panel-block">
         <button className="button is-link is-outlined is-fullwidth"
-                onClick={() => setAreChecked(Array(elements.length).fill(false))}>
-          Reset all filters
+                onClick={() => reset()}>
+          Reset
         </button>
       </div>
     </nav>
