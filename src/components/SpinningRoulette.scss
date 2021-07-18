@@ -69,26 +69,21 @@ $maxNumberOfItems: 15;
 }
 
 .background-blue {
-  background-color: #0046da;
+  background-color: #ebf0fc;
 }
 
 .background-red {
-  background-color: #e22752;
+  background-color: #fdeef1;
+}
+
+.background-green {
+  background-color: #ebf8f3;
 }
 
 .wheel-cursor-container {
   left: calc(50% - 1rem);
   position: absolute;
   z-index: 10;
-}
-
-.wheel-text {
-  color: white;
-}
-
-.is-centered {
-  display: flex;
-  justify-content: center;
 }
 
 .slice-text {

@@ -1,9 +1,6 @@
-import React, {useState} from 'react';
-import './App.scss';
-
-function generateRandomSpin() {
-  return Math.ceil(Math.random() * 50);
-}
+import React from 'react';
+import List from './components/List';
+import SpinningRoulette from './components/SpinningRoulette';
 
 const RESTAURANTS = [
   'Macdonald',
@@ -18,40 +15,13 @@ const RESTAURANTS = [
 ];
 
 function App() {
-  const [spin, setSpin] = useState<number>(0);
   return (
-    <>
-      <div className="container is-max-desktop">
-        <div className="columns is-multiline is-centered">
-          {RESTAURANTS.map((restaurant: any): JSX.Element => <div className="column is-full">{restaurant}<hr/></div>)}
-        </div>
+    <div className="is-flex" style={{ alignItems: 'stretch' }}>
+      <div style={{ width: '30%', height: '100%' }}>
+        <List title="Liste des restaurants" elements={RESTAURANTS}></List>
       </div>
-      <div className="container">
-        <div className="wheel-cursor-container">
-          <i className="fas fa-caret-down fa-3x"></i>
-        </div>
-        <div className="wheel-container">
-          <div className={`wheel spin-animation-${RESTAURANTS.length}-${spin}`}>
-            {RESTAURANTS.map((restaurant: any, index): JSX.Element => (
-              <div id={`pieSlice-${RESTAURANTS.length}-${index + 1}`} className="hold">
-                <div className={`slice-name-${RESTAURANTS.length}-${index + 1}`}>
-                  <div className="slice-text">{restaurant}</div>
-                </div>
-                <div className={`wheel-part ${(index % 2 === 0) ? 'background-blue' : 'background-red'}`}>
-                </div>
-              </div>
-            ))
-            }
-          </div>
-        </div>
-        <div className="mt-3 is-centered">
-          <button className="button is-link is-rounded" onClick={() => {
-            setSpin(generateRandomSpin());
-          }}>Spin
-          </button>
-        </div>
-      </div>
-    </>
+      <SpinningRoulette elements={RESTAURANTS}></SpinningRoulette>
+    </div>
   );
 }
 
