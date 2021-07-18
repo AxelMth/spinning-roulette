@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import Filters from './Filters';
 
 interface Props {
   title: string;
@@ -12,9 +13,10 @@ const List = ({title, elements, reset}: Props) => {
       <p className="panel-heading is-radiusless">
         {title}
       </p>
+      <Filters></Filters>
       {elements.map(element => (
         <label className="panel-block">
-          <input type={element.type} checked={element.isChecked} onChange={() => element.setIsChecked()} />
+          <input type="checkbox" checked={element.isChecked} onChange={() => element.setIsChecked()}/>
           {element.label}
         </label>
       ))}

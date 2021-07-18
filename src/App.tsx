@@ -1,26 +1,14 @@
 import React, {useState} from 'react';
 import List from './components/List';
 import SpinningRoulette from './components/SpinningRoulette';
-
-const RESTAURANTS = [
-  'Macdonald',
-  'Burger King',
-  'O\'Tacos',
-  'Okame',
-  'Apertivus',
-  'Shine Garden',
-  'Triumfo',
-  'Laouz',
-  'Petit Wagram',
-];
+import { RESTAURANTS } from './constants/restaurants';
 
 function App() {
-  const intialState = Array(RESTAURANTS.length).fill(true);
-  const [areChecked, setAreChecked] = useState(intialState);
+  const initialState = Array(RESTAURANTS.length).fill(true);
+  const [areChecked, setAreChecked] = useState(initialState);
   const elementsWithForm = RESTAURANTS.map((e, i) => {
     return {
-      label: e,
-      type: 'checkbox',
+      ...e,
       isChecked: areChecked[i],
       setIsChecked: () => {
         const areCheckedCloned = JSON.parse(JSON.stringify(areChecked));
@@ -36,7 +24,7 @@ function App() {
         <List
           title="Liste des restaurants"
           elements={elementsWithForm}
-          reset={() => setAreChecked(intialState)}
+          reset={() => setAreChecked(initialState)}
         ></List>
       </div>
       <div className="column is-three-quarters">
