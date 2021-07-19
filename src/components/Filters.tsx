@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Diet, RestaurantType} from '../constants/restaurants';
+import {Cost, Diet, RestaurantType} from '../constants/restaurants';
 
 interface Props {
 
@@ -14,6 +14,18 @@ const Filters = ({}: Props) => {
     setIsTypeFilterActive(false);
     setIsDietFilterActive(false);
   }
+  const costFilters = Object.values(Cost).map((cost: string, index: number) => ({
+    label: Array(index + 1).fill(<i className="fas fa-euro-sign"></i>),
+    isChecked: true,
+  }));
+  const restaurantTypeFilter = Object.values(RestaurantType).map((type: string) => ({
+    label: type,
+    isChecked: true,
+  }));
+  const dietFilter = Object.values(Diet).map((diet: string) => ({
+    label: diet,
+    isChecked: true,
+  }));
   return (
     <div className="is-flex is-justify-content-space-around	py-3">
       <div className={`dropdown ${isPriceFilterActive ? 'is-active' : ''}`}>
@@ -30,25 +42,12 @@ const Filters = ({}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            <label className="dropdown-item">
-              <input type="checkbox" className="mr-2"/>
-              <span><i className="fas fa-euro-sign"></i></span>
-            </label>
-            <label className="dropdown-item">
-              <input type="checkbox" className="mr-2"/>
-              <span>
-                <i className="fas fa-euro-sign"></i>
-                <i className="fas fa-euro-sign"></i>
-              </span>
-            </label>
-            <label className="dropdown-item">
-              <input type="checkbox" className="mr-2"/>
-              <span>
-                <i className="fas fa-euro-sign"></i>
-                <i className="fas fa-euro-sign"></i>
-                <i className="fas fa-euro-sign"></i>
-              </span>
-            </label>
+            {costFilters.map(element => (
+              <label className="dropdown-item">
+                <input type="checkbox" checked={element.isChecked} className="mr-2"/>
+                <span>{element.label}</span>
+              </label>
+            ))}
           </div>
         </div>
       </div>
@@ -66,10 +65,10 @@ const Filters = ({}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {Object.values(RestaurantType).map((type: string) => (
+            {restaurantTypeFilter.map(element => (
               <label className="dropdown-item">
-                <input type="checkbox" className="mr-2"/>
-                <span>{type}</span>
+                <input type="checkbox" checked={element.isChecked} className="mr-2"/>
+                <span>{element.label}</span>
               </label>
             ))}
           </div>
@@ -89,10 +88,10 @@ const Filters = ({}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {Object.values(Diet).map((diet: string) => (
+            {dietFilter.map(element => (
               <label className="dropdown-item">
-                <input type="checkbox" className="mr-2"/>
-                <span>{diet}</span>
+                <input type="checkbox" checked={element.isChecked} className="mr-2"/>
+                <span>{element.label}</span>
               </label>
             ))}
           </div>
