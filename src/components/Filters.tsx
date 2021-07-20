@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
 import {Cost, Diet, RestaurantType} from '../constants/restaurants';
 
-interface Props {
-
-}
-
-const Filters = ({}: Props) => {
+const Filters = () => {
   const [isPriceFilterActive, setIsPriceFilterActive] = useState(false);
   const [isTypeFilterActive, setIsTypeFilterActive] = useState(false);
   const [isDietFilterActive, setIsDietFilterActive] = useState(false);

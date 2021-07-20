@@ -3,6 +3,7 @@ export enum RestaurantType {
   FRENCH = 'Brasserie',
   ASIAN = 'Asiatique',
   ITALIAN = 'Italien',
+  GREEK = 'Grec',
   ARABIC = 'Marocain / Tunisien',
 }
 
@@ -33,4 +34,7 @@ export const RESTAURANTS = [
   {label: 'Petit Wagram', cost: Cost.MEDIUM, diets: [], types: [RestaurantType.FRENCH]},
   {label: 'Popote', cost: Cost.MEDIUM, diets: [Diet.VEGETARIAN, Diet.HEALTHY], types: [RestaurantType.FRENCH]},
   {label: 'Naan', cost: Cost.MEDIUM, diets: [Diet.VEGETARIAN, Diet.HEALTHY], types: [RestaurantType.FRENCH, RestaurantType.ASIAN]},
+  {label: 'Dyonisos', cost: Cost.MEDIUM, diets: [Diet.VEGETARIAN, Diet.HEALTHY], types: [RestaurantType.FRENCH]},
+  {label: 'Libanais Sandwich', cost: Cost.CHEAP, diets: [Diet.VEGETARIAN, Diet.HEALTHY], types: [RestaurantType.GREEK]},
+  {label: 'Libanais Traiteur', cost: Cost.MEDIUM, diets: [Diet.VEGETARIAN, Diet.HEALTHY], types: [RestaurantType.GREEK]},
 ];
