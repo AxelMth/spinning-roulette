@@ -65,6 +65,10 @@ function App() {
     setDietFiltersAreChecked(dietFilterInitialState);
   }
   const checkedElements = elementsWithForm.filter(e => e.isChecked);
+  const [spin, setSpin] = useState<number>(0);
+  const generateRandomSpin = () => {
+    return Math.ceil(Math.random() * 50);
+  }
   return (
     <div className="columns is-multiline is-centered">
       <div className="column is-one-quarter">
@@ -76,9 +80,21 @@ function App() {
           dietFilter={dietFilter}
           reset={reset}
         ></List>
+        <div className="panel-block">
+          <button className="button is-link is-outlined is-fullwidth"
+                  onClick={() => reset()}>
+            Reset
+          </button>
+        </div>
+        <div className="panel-block">
+          <button className="button is-primary is-outlined is-fullwidth"
+                  onClick={() => setSpin(generateRandomSpin())}>
+            Spin
+          </button>
+        </div>
       </div>
       <div className="column is-three-quarters">
-        <SpinningRoulette elements={checkedElements}></SpinningRoulette>
+        <SpinningRoulette elements={checkedElements} spin={spin}></SpinningRoulette>
       </div>
     </div>
   );

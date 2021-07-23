@@ -19,18 +19,12 @@ const List = ({title, elements, costFilters, restaurantTypeFilter, dietFilter, r
       <Filters costFilters={costFilters}
                restaurantTypeFilter={restaurantTypeFilter}
                dietFilter={dietFilter}></Filters>
-      {elements.map(element => (
-        <label className="panel-block">
+      {elements.map((element, key) => (
+        <label key={key} className="panel-block">
           <input type="checkbox" checked={element.isChecked} onChange={() => element.setIsChecked()}/>
           {element.label}
         </label>
       ))}
-      <div className="panel-block">
-        <button className="button is-link is-outlined is-fullwidth"
-                onClick={() => reset()}>
-          Reset
-        </button>
-      </div>
     </nav>
   );
 };

@@ -16,7 +16,7 @@ const Filters = ({costFilters, restaurantTypeFilter, dietFilter}: Props) => {
     setIsDietFilterActive(false);
   }
   return (
-    <div className="is-flex is-justify-content-space-around	py-3">
+    <div className="column is-full">
       <div className={`dropdown ${isPriceFilterActive ? 'is-active' : ''}`}>
         <div className="dropdown-trigger">
           <button className="button is-small"
@@ -31,8 +31,8 @@ const Filters = ({costFilters, restaurantTypeFilter, dietFilter}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {costFilters.map(element => (
-              <label className="dropdown-item">
+            {costFilters.map((element, index) => (
+              <label key={index} className="dropdown-item">
                 <input type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
                 }} className="mr-2"/>
@@ -56,8 +56,8 @@ const Filters = ({costFilters, restaurantTypeFilter, dietFilter}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {restaurantTypeFilter.map(element => (
-              <label className="dropdown-item">
+            {restaurantTypeFilter.map((element, index) => (
+              <label key={index} className="dropdown-item">
                 <input type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
                 }} className="mr-2"/>
@@ -81,8 +81,8 @@ const Filters = ({costFilters, restaurantTypeFilter, dietFilter}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {dietFilter.map(element => (
-              <label className="dropdown-item">
+            {dietFilter.map((element, index) => (
+              <label key={index} className="dropdown-item">
                 <input type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
                 }} className="mr-2"/>
