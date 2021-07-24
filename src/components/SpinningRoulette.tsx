@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import './SpinningRoulette.scss';
+import {IRestaurant} from '../constants/restaurants';
 
 interface Props {
-  elements: any[];
+  elements: Array<IRestaurant>;
   spin: number;
 }
 

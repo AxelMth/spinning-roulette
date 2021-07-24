@@ -4,20 +4,20 @@ import Filters from './Filters';
 interface Props {
   title: string;
   elements: any[];
-  costFilters: any[];
-  restaurantTypeFilter: any[];
+  costFilter: any[];
+  typeFilter: any[];
   dietFilter: any[];
   reset: () => void;
 }
 
-const List = ({title, elements, costFilters, restaurantTypeFilter, dietFilter, reset}: Props) => {
+const List = ({title, elements, costFilter, typeFilter, dietFilter, reset}: Props) => {
   return (
     <nav className="panel is-link is-shadowless">
       <p className="panel-heading is-radiusless">
         {title}
       </p>
-      <Filters costFilters={costFilters}
-               restaurantTypeFilter={restaurantTypeFilter}
+      <Filters costFilter={costFilter}
+               typeFilter={typeFilter}
                dietFilter={dietFilter}></Filters>
       {elements.map((element, key) => (
         <label key={key} className="panel-block">

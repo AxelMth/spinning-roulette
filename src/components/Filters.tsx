@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
+import { Filter } from '../hooks/filters.hook';
 
 interface Props {
-  costFilters: any[];
-  restaurantTypeFilter: any[];
-  dietFilter: any[];
+  costFilter: Filter;
+  typeFilter: Filter;
+  dietFilter: Filter;
 }
 
-const Filters = ({costFilters, restaurantTypeFilter, dietFilter}: Props) => {
+const Filters = ({costFilter, typeFilter, dietFilter}: Props) => {
   const [isPriceFilterActive, setIsPriceFilterActive] = useState(false);
   const [isTypeFilterActive, setIsTypeFilterActive] = useState(false);
   const [isDietFilterActive, setIsDietFilterActive] = useState(false);
@@ -31,7 +32,7 @@ const Filters = ({costFilters, restaurantTypeFilter, dietFilter}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {costFilters.map((element, index) => (
+            {costFilter.map((element, index) => (
               <label key={index} className="dropdown-item">
                 <input type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
@@ -56,7 +57,7 @@ const Filters = ({costFilters, restaurantTypeFilter, dietFilter}: Props) => {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {restaurantTypeFilter.map((element, index) => (
+            {typeFilter.map((element, index) => (
               <label key={index} className="dropdown-item">
                 <input type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
