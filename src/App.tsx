@@ -31,31 +31,33 @@ function App() {
   const checkedElements = elementsWithForm.filter(e => e.isChecked);
   const [spin, setRandomSpin] = useSpin();
   return (
-    <div className="columns is-multiline is-centered">
-      <div className="column is-one-quarter">
-        <List
-          title="Liste des restaurants"
-          elements={elementsWithForm}
-          costFilter={costFilter}
-          typeFilter={typeFilter}
-          dietFilter={dietFilter}
-          reset={reset}
-        ></List>
-        <div className="panel-block">
-          <button className="button is-link is-outlined is-fullwidth"
-                  onClick={() => reset()}>
-            Reset
-          </button>
+    <div className="container is-fluid">
+      <div className="columns is-multiline">
+        <div className="column is-full-mobile is-one-third-desktop" style={{marginLeft: '-32px'}}>
+          <List
+            title="Liste des restaurants"
+            elements={elementsWithForm}
+            costFilter={costFilter}
+            typeFilter={typeFilter}
+            dietFilter={dietFilter}
+            reset={reset}
+          ></List>
+          <div className="panel-block">
+            <button className="button is-link is-outlined is-fullwidth"
+                    onClick={() => reset()}>
+              Reset
+            </button>
+          </div>
+          <div className="panel-block">
+            <button className="button is-primary is-outlined is-fullwidth"
+                    onClick={() => setRandomSpin()}>
+              Spin
+            </button>
+          </div>
         </div>
-        <div className="panel-block">
-          <button className="button is-primary is-outlined is-fullwidth"
-                  onClick={() => setRandomSpin()}>
-            Spin
-          </button>
+        <div className="column  is-full-mobile is-three-thirds-desktop">
+          <SpinningRoulette elements={checkedElements} spin={spin}></SpinningRoulette>
         </div>
-      </div>
-      <div className="column is-three-quarters">
-        <SpinningRoulette elements={checkedElements} spin={spin}></SpinningRoulette>
       </div>
     </div>
   );

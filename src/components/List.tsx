@@ -21,7 +21,7 @@ const List = ({title, elements, costFilter, typeFilter, dietFilter, reset}: Prop
                dietFilter={dietFilter}></Filters>
       {elements.map((element, key) => (
         <label key={key} className="panel-block">
-          <input type="checkbox" checked={element.isChecked} onChange={() => element.setIsChecked()}/>
+          <input className="checkbox" type="checkbox" checked={element.isChecked} onChange={() => element.setIsChecked()}/>
           {element.label}
         </label>
       ))}

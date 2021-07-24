@@ -18,7 +18,7 @@ const Filters = ({costFilter, typeFilter, dietFilter}: Props) => {
   }
   return (
     <div className="column is-full">
-      <div className={`dropdown ${isPriceFilterActive ? 'is-active' : ''}`}>
+      <div className={`dropdown mr-2 ${isPriceFilterActive ? 'is-active' : ''}`}>
         <div className="dropdown-trigger">
           <button className="button is-small"
                   aria-haspopup="true"
@@ -34,16 +34,16 @@ const Filters = ({costFilter, typeFilter, dietFilter}: Props) => {
           <div className="dropdown-content">
             {costFilter.map((element, index) => (
               <label key={index} className="dropdown-item">
-                <input type="checkbox" checked={element.isChecked} onChange={() => {
+                <input className="checkbox mr-2" type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
-                }} className="mr-2"/>
+                }}/>
                 <span>{element.label}</span>
               </label>
             ))}
           </div>
         </div>
       </div>
-      <div className={`dropdown ${isTypeFilterActive ? 'is-active' : ''}`}>
+      <div className={`dropdown mr-2 ${isTypeFilterActive ? 'is-active' : ''}`}>
         <div className="dropdown-trigger">
           <button className="button is-small"
                   aria-haspopup="true"
@@ -59,9 +59,9 @@ const Filters = ({costFilter, typeFilter, dietFilter}: Props) => {
           <div className="dropdown-content">
             {typeFilter.map((element, index) => (
               <label key={index} className="dropdown-item">
-                <input type="checkbox" checked={element.isChecked} onChange={() => {
+                <input className="checkbox mr-2" type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
-                }} className="mr-2"/>
+                }}/>
                 <span>{element.label}</span>
               </label>
             ))}
@@ -84,9 +84,9 @@ const Filters = ({costFilter, typeFilter, dietFilter}: Props) => {
           <div className="dropdown-content">
             {dietFilter.map((element, index) => (
               <label key={index} className="dropdown-item">
-                <input type="checkbox" checked={element.isChecked} onChange={() => {
+                <input className="checkbox mr-2" type="checkbox" checked={element.isChecked} onChange={() => {
                   element.setIsChecked();
-                }} className="mr-2"/>
+                }}/>
                 <span>{element.label}</span>
               </label>
             ))}
