@@ -1,11 +1,11 @@
-import {Cost, Diet, Type} from '../constants/restaurants';
-import React, {useState} from 'react';
+import { Cost, Diet, Type } from '../constants/restaurants';
+import { useState } from 'react';
 import { ICheckbox } from '../interfaces/form.interface';
 
 interface IFilter extends ICheckbox {
   label: string | Array<JSX.Element>;
   value: string;
-};
+}
 
 export type Filter = Array<IFilter>;
 
@@ -50,6 +50,6 @@ export const useFilters = (): [Filter, Filter, Filter, () => void] => {
     setCostFiltersAreChecked(costFiltersInitialState);
     setRestaurantTypeFiltersAreChecked(typeInitialState);
     setDietFiltersAreChecked(dietFilterInitialState);
-  }
+  };
   return [costFilter, typeFilter, dietFilter, resetFilters];
-}
+};
