@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './SpinningRoulette.scss';
-import { IRestaurant } from '../constants/restaurants';
+import {IRestaurant} from '../constants/restaurants';
+import _ from 'lodash';
 
 interface Props {
   elements: Array<IRestaurant>;
@@ -20,13 +21,20 @@ const getBackgroundColor = (index: number): string => {
   }
 };
 
-const SpinningRoulette = ({ elements, spin }: Props) => {
-  return (
+const SpinningRoulette = ({elements, spin}: Props) => {
+  return elements.length < 2 ?
+    <div className="message">
+      <div className="message-header">Erreur</div>
+      <div className="message-body">
+        Veuillez selectionner au moins 2 restaurants
+      </div>
+    </div>
+    :
     <div className="columns is-multiline is-centered">
       <div className="column is-flex is-justify-content-center pb-0">
         <i className="fas fa-caret-down fa-3x"></i>
       </div>
-      <div className="column is-full is-flex is-justify-content-center p-0" style={{ marginTop: -15 }}>
+      <div className="column is-full is-flex is-justify-content-center p-0" style={{marginTop: -15}}>
         <div className={`roulette spin-animation-${elements.length}-${spin}`}>
           {elements.map(
             (element: any, index: number): JSX.Element => (
@@ -36,12 +44,11 @@ const SpinningRoulette = ({ elements, spin }: Props) => {
                 </div>
                 <div className={`roulette-part ${getBackgroundColor(index)}`}></div>
               </div>
-            )
+            ),
           )}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
 
 export default SpinningRoulette;

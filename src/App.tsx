@@ -43,7 +43,7 @@ function App() {
     ...restaurant,
     isChecked: areChecked[i],
     setIsChecked: () => {
-      const areCheckedCloned = JSON.parse(JSON.stringify(areChecked));
+      const areCheckedCloned = _.clone(areChecked);
       areCheckedCloned[i] = !areCheckedCloned[i];
       setAreChecked(areCheckedCloned);
     },
@@ -67,13 +67,13 @@ function App() {
               Reset
             </button>
           </div>
-          <div className="panel-block">
+          {!_.isEmpty(elementsWithForm) ? <div className="panel-block">
             <button className="button is-primary is-outlined is-fullwidth" onClick={() => setRandomSpin()}>
               Spin
             </button>
-          </div>
+          </div> : null}
         </div>
-        <div className="column  is-full-mobile is-three-thirds-desktop">
+        <div className="column is-full-mobile is-three-thirds-desktop">
           <SpinningRoulette elements={checkedElements} spin={spin}></SpinningRoulette>
         </div>
       </div>
