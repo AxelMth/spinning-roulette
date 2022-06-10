@@ -9,10 +9,8 @@
   },
   "private": true,
   "dependencies": {
-    "@notionhq/client": "^1.0.4",
     "core-js": "^3.6.5",
     "dotenv": "^16.0.1",
-    "lodash": "^4.17.21",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "regenerator-runtime": "0.13.7",
@@ -24,6 +22,7 @@
     "@nrwl/cypress": "14.2.4",
     "@nrwl/eslint-plugin-nx": "14.2.4",
     "@nrwl/jest": "14.2.4",
+    "@nrwl/js": "^14.2.4",
     "@nrwl/linter": "14.2.4",
     "@nrwl/node": "^14.2.4",
     "@nrwl/nx-cloud": "latest",
