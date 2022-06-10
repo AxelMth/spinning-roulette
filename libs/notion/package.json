@@ -1,0 +1,12 @@
+{
+  "name": "@temp-workspace/notion",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "dependencies": {
+    "@notionhq/client": "^1.0.4",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182"
+  }
+}
