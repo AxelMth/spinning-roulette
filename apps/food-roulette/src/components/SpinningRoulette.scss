@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .roulette {
   border-radius: 50%;
   height: 500px;
@@ -21,7 +23,7 @@
 
 $maxNumberOfItems: 15;
 @for $numberOfItems from 1 to $maxNumberOfItems {
-  $sliceAngle: 360deg / $numberOfItems;
+  $sliceAngle: math.div(360deg, $numberOfItems);
   @for $i from 0 to $numberOfItems {
     #slice-#{$numberOfItems}-#{$i + 1} {
       transform: rotate($i * $sliceAngle);
@@ -33,7 +35,7 @@ $maxNumberOfItems: 15;
 
     .slice-name-#{$numberOfItems}-#{$i + 1} {
       position: absolute;
-      transform: rotate($sliceAngle / 2);
+      transform: rotate(math.div($sliceAngle, 2));
       height: 500px;
       width: 500px;
       z-index: 1;
@@ -47,7 +49,7 @@ $maxNumberOfItems: 15;
   @for $i from 1 to 50 {
     @keyframes spin-#{$numberOfItems}-#{$i} {
       to {
-        transform: rotate(($numberOfItems * 2 + $i) * $sliceAngle + $sliceAngle / 2);
+        transform: rotate(($numberOfItems * 2 + $i) * $sliceAngle + math.div($sliceAngle, 2));
       }
     }
 
