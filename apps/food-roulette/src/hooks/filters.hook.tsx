@@ -1,3 +1,4 @@
+import React from 'react';
 import { Cost, Diet, Type } from '../constants/restaurants';
 import { useState } from 'react';
 import { ICheckbox } from '../interfaces/form.interface';

@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './SpinningRoulette.scss';
 import {IRestaurant} from '../constants/restaurants';
-import _ from 'lodash';
 
 interface Props {
   elements: Array<IRestaurant>;
