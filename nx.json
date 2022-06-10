@@ -15,12 +15,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "MThkY2FiNjUtZWJhOS00NTMwLTg0M2EtMjEyNjlmMGUyYzg1fHJlYWQtd3JpdGU="
       }
     }
@@ -49,5 +44,5 @@
       }
     }
   },
-  "defaultProject": "food-roulette"
+  "defaultProject": "frontend"
 }
