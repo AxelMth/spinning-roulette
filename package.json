@@ -9,7 +9,10 @@
   },
   "private": true,
   "dependencies": {
+    "@notionhq/client": "^1.0.4",
     "core-js": "^3.6.5",
+    "dotenv": "^16.0.1",
+    "lodash": "^4.17.21",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "regenerator-runtime": "0.13.7",
