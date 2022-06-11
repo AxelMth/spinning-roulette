@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import List from './components/List';
 import SpinningRoulette from './components/SpinningRoulette';
@@ -6,6 +6,7 @@ import { IRestaurant, RESTAURANTS } from './constants/restaurants';
 import { useFilters } from './hooks/filters.hook';
 import { ICheckbox } from './interfaces/form.interface';
 import { useSpin } from './hooks/spin.hook';
+import { getFilters, getRestaurants } from '@temp-workspace/api-requester';
 
 function App() {
   const initialState = Array(RESTAURANTS.length).fill(true);
@@ -15,6 +16,19 @@ function App() {
     setAreChecked(initialState);
     resetFilters();
   };
+  const [restaurants, setRestaurants] = useState([]);
+  // @ts-ignore
+  useEffect(async () => {
+    const restaurants = await getRestaurants();
+    setRestaurants(restaurants);
+  }, []);
+  const [filters, setFilters] = useState([]);
+  // @ts-ignore
+  useEffect(async () => {
+    const filters = await getFilters();
+    setFilters(restaurants);
+    return () => {};
+  }, []);
   const elementsWithForm = RESTAURANTS.filter((e) => {
     return (
       _.intersection(

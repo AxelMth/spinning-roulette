@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@temp-workspace/api-requester": ["libs/api-requester/src/index.ts"],
       "@temp-workspace/notion": ["libs/notion/src/index.ts"]
     }
   },

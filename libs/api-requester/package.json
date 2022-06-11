@@ -1,0 +1,8 @@
+{
+  "name": "@temp-workspace/api-requester",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "devDependencies": {
+    "axios": "^0.27.2"
+  }
+}
