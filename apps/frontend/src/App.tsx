@@ -2,9 +2,9 @@ import React from 'react';
 import { useFilters } from './hooks/filters.hook';
 import { useSpin } from './hooks/spin.hook';
 import { useRestaurants } from './hooks/restaurants.hook';
-import { Filter } from './components/Filter';
+import { FilterGroup } from './components/FilterGroup';
 
-function App() {
+export function App() {
   const [menuFilters, toggleFilterOption, resetFilters] = useFilters();
   const [restaurants, setRestaurants] = useRestaurants();
   const reset = () => {
@@ -19,15 +19,10 @@ function App() {
           className="column is-full-mobile is-one-third-desktop"
           style={{ marginLeft: '-32px' }}
         >
-          {menuFilters.map((f) => (
-            <Filter
-              name={f.name}
-              options={f.options}
-              toggleFilterOption={(filterName, optionValue) => {
-                toggleFilterOption(filterName, optionValue);
-              }}
-            />
-          ))}
+          <FilterGroup
+            filters={menuFilters}
+            toggleFilterOption={toggleFilterOption}
+          />
           {/*<List*/}
           {/*  title="Liste des restaurants"*/}
           {/*  elements={elementsWithForm}*/}
@@ -65,5 +60,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

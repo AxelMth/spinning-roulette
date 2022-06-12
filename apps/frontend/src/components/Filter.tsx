@@ -1,45 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { IFilter } from '../hooks/filters.hook';
 
 interface Props {
-  name: string;
-  options: {
-    label: string;
-    value: string | number;
-    isChecked: boolean;
-    setIsChecked: () => void;
-  }[];
+  filter: IFilter;
   toggleFilterOption: (filterName: string, optionValue: string | number) => void;
+  filterOptionsDisplayState: boolean;
+  toggleFilterOptions: () => void;
+  hideAllDropdowns: () => void;
 }
 
-export const Filter = ({ name, options, toggleFilterOption }: Props) => {
-  const [isFilterActive, setIsFilterActive] = useState(false);
-  const reset = () => {
-    setIsFilterActive(false)
-  };
+export const Filter = ({ filter, toggleFilterOption, filterOptionsDisplayState, toggleFilterOptions, hideAllDropdowns }: Props) => {
   return (
     <div className="column is-full">
       <div
-        className={`dropdown mr-2 ${isFilterActive ? 'is-active' : ''}`}
+        className={`dropdown mr-2 ${filterOptionsDisplayState ? 'is-active' : ''}`}
       >
         <div className="dropdown-trigger">
           <button
             className="button is-small"
             aria-haspopup="true"
             aria-controls="dropdown-menu"
-            onClick={() => { setIsFilterActive(true) }}
+            onClick={() => { hideAllDropdowns(); toggleFilterOptions() }}
           >
-            { name }
+            { filter.name }
           </button>
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
           <div className="dropdown-content">
-            {options.map((option, index) => (
+            {filter.options.map((option, index) => (
               <label key={index} className="dropdown-item">
                 <input
                   className="checkbox mr-2"
                   type="checkbox"
                   checked={option.isChecked}
-                  onChange={() => { toggleFilterOption(name, option.value); }}
+                  onChange={() => { toggleFilterOption(filter.name, option.value); }}
                 />
                 {option.label}
               </label>

@@ -8,7 +8,7 @@ interface IOption extends ICheckbox {
   value: string | number;
 }
 
-interface IFilter extends ICheckbox {
+export interface IFilter {
   name: string;
   options: IOption[]
 }
@@ -24,7 +24,7 @@ export const useFilters = (): [IFilter[], (filterName: string, optionValue: stri
     fetchFilters();
   }, []);
   // Get menu filters from database properties
-  const [menuFilters, setMenuFilters] = useState<any[]>([]);
+  const [menuFilters, setMenuFilters] = useState<IFilter[]>([]);
   useEffect(() => {
     const menuFilters = _.map(filters, (f) => ({
       ...f,
