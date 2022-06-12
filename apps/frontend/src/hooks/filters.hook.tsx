@@ -32,17 +32,22 @@ export const useFilters = (): [IFilter[], (filterName: string, optionValue: stri
         return {
           label: option.name,
           value: option.name,
+          isChecked: false,
         }
       }),
-      isChecked: false,
     }));
     setMenuFilters(menuFilters);
   }, [filters])
   const resetFilters = () => {
     setMenuFilters(_.map(menuFilters, (f) => ({
         ...f,
-        isChecked: false,
-      })),
+        options: _.map(f.options, (option) => {
+          return {
+            ...option,
+            isChecked: false,
+          }
+        })
+      }))
     );
   };
   const toggleFilterOption = (filterName: string, optionValue: string | number) => {
