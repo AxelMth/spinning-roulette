@@ -1,7 +1,8 @@
-import { apiRequester } from './api-requester';
+import { getFilters, getRestaurants } from './api-requester';
 
 describe('apiRequester', () => {
   it('should work', () => {
-    expect(apiRequester()).toEqual('api-requester');
+    expect(getFilters()).toEqual('api-requester');
+    expect(getRestaurants()).toEqual('api-requester');
   });
 });

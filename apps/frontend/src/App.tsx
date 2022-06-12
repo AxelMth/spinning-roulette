@@ -1,68 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import _ from 'lodash';
-import List from './components/List';
-import SpinningRoulette from './components/SpinningRoulette';
-import { IRestaurant, RESTAURANTS } from './constants/restaurants';
+import React from 'react';
 import { useFilters } from './hooks/filters.hook';
-import { ICheckbox } from './interfaces/form.interface';
 import { useSpin } from './hooks/spin.hook';
-import { getFilters, getRestaurants } from '@temp-workspace/api-requester';
+import { useRestaurants } from './hooks/restaurants.hook';
+import { Filter } from './components/Filter';
 
 function App() {
-  const initialState = Array(RESTAURANTS.length).fill(true);
-  const [areChecked, setAreChecked] = useState(initialState);
-  const [costFilter, typeFilter, dietFilter, resetFilters] = useFilters();
+  const [menuFilters, resetFilters] = useFilters();
+  const [restaurants, setRestaurants] = useRestaurants();
   const reset = () => {
-    setAreChecked(initialState);
+    // setAreChecked(initialState);
     resetFilters();
   };
-  const [restaurants, setRestaurants] = useState([]);
-  // @ts-ignore
-  useEffect(async () => {
-    const restaurants = await getRestaurants();
-    setRestaurants(restaurants);
-  }, []);
-  const [filters, setFilters] = useState([]);
-  // @ts-ignore
-  useEffect(async () => {
-    const filters = await getFilters();
-    setFilters(restaurants);
-    return () => {};
-  }, []);
-  const elementsWithForm = RESTAURANTS.filter((e) => {
-    return (
-      _.intersection(
-        e.diets,
-        _.map(
-          _.filter(dietFilter, (d) => d.isChecked),
-          'value'
-        )
-      ).length &&
-      _.intersectionBy(
-        e.types,
-        _.map(
-          _.filter(typeFilter, (rT) => rT.isChecked),
-          'value'
-        )
-      ).length &&
-      _.includes(
-        _.map(
-          _.filter(costFilter, (c) => c.isChecked),
-          'value'
-        ),
-        e.cost
-      )
-    );
-  }).map<IRestaurant & ICheckbox>((restaurant, i: number) => ({
-    ...restaurant,
-    isChecked: areChecked[i],
-    setIsChecked: () => {
-      const areCheckedCloned = _.clone(areChecked);
-      areCheckedCloned[i] = !areCheckedCloned[i];
-      setAreChecked(areCheckedCloned);
-    },
-  }));
-  const checkedElements = elementsWithForm.filter((e) => e.isChecked);
+  // const elementsWithForm = restaurants.filter((e) => {
+  //   return true;
+  //     // _.intersection(
+  //     //   menuFilters,
+  //     //   _.map(
+  //     //     _.filter(menuFilters, (d) => d.isChecked),
+  //     //     'value'
+  //     //   )
+  //     // ).length
+  // }).map<IRestaurant & ICheckbox>((restaurant, i: number) => ({
+  //   ...restaurant,
+  //   isChecked: areChecked[i],
+  //   setIsChecked: () => {
+  //     const areCheckedCloned = _.clone(areChecked);
+  //     areCheckedCloned[i] = !areCheckedCloned[i];
+  //     setAreChecked(areCheckedCloned);
+  //   },
+  // }));
+  // const checkedElements = elementsWithForm.filter((e) => e.isChecked);
   const [spin, setRandomSpin] = useSpin();
   return (
     <div className="container is-fluid">
@@ -71,14 +38,20 @@ function App() {
           className="column is-full-mobile is-one-third-desktop"
           style={{ marginLeft: '-32px' }}
         >
-          <List
-            title="Liste des restaurants"
-            elements={elementsWithForm}
-            costFilter={costFilter}
-            typeFilter={typeFilter}
-            dietFilter={dietFilter}
-            reset={reset}
-          ></List>
+          {menuFilters.map((f) => (
+            <Filter
+              name={f.name}
+              options={f.options}
+            />
+          ))}
+          {/*<List*/}
+          {/*  title="Liste des restaurants"*/}
+          {/*  elements={elementsWithForm}*/}
+          {/*  costFilter={costFilter}*/}
+          {/*  typeFilter={typeFilter}*/}
+          {/*  dietFilter={dietFilter}*/}
+          {/*  reset={reset}*/}
+          {/*></List>*/}
           <div className="panel-block">
             <button
               className="button is-link is-outlined is-fullwidth"
@@ -87,22 +60,22 @@ function App() {
               Reset
             </button>
           </div>
-          {!_.isEmpty(elementsWithForm) ? (
-            <div className="panel-block">
-              <button
-                className="button is-primary is-outlined is-fullwidth"
-                onClick={() => setRandomSpin()}
-              >
-                Spin
-              </button>
-            </div>
-          ) : null}
+          {/*{!_.isEmpty(elementsWithForm) ? (*/}
+          {/*  <div className="panel-block">*/}
+          {/*    <button*/}
+          {/*      className="button is-primary is-outlined is-fullwidth"*/}
+          {/*      onClick={() => setRandomSpin()}*/}
+          {/*    >*/}
+          {/*      Spin*/}
+          {/*    </button>*/}
+          {/*  </div>*/}
+          {/*) : null}*/}
         </div>
         <div className="column is-full-mobile is-three-thirds-desktop">
-          <SpinningRoulette
-            elements={checkedElements}
-            spin={spin}
-          ></SpinningRoulette>
+          {/*<SpinningRoulette*/}
+          {/*  elements={checkedElements}*/}
+          {/*  spin={spin}*/}
+          {/*></SpinningRoulette>*/}
         </div>
       </div>
     </div>
