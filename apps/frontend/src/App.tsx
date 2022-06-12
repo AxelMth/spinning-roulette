@@ -5,31 +5,12 @@ import { useRestaurants } from './hooks/restaurants.hook';
 import { Filter } from './components/Filter';
 
 function App() {
-  const [menuFilters, resetFilters] = useFilters();
+  const [menuFilters, toggleFilterOption, resetFilters] = useFilters();
   const [restaurants, setRestaurants] = useRestaurants();
   const reset = () => {
     // setAreChecked(initialState);
     resetFilters();
   };
-  // const elementsWithForm = restaurants.filter((e) => {
-  //   return true;
-  //     // _.intersection(
-  //     //   menuFilters,
-  //     //   _.map(
-  //     //     _.filter(menuFilters, (d) => d.isChecked),
-  //     //     'value'
-  //     //   )
-  //     // ).length
-  // }).map<IRestaurant & ICheckbox>((restaurant, i: number) => ({
-  //   ...restaurant,
-  //   isChecked: areChecked[i],
-  //   setIsChecked: () => {
-  //     const areCheckedCloned = _.clone(areChecked);
-  //     areCheckedCloned[i] = !areCheckedCloned[i];
-  //     setAreChecked(areCheckedCloned);
-  //   },
-  // }));
-  // const checkedElements = elementsWithForm.filter((e) => e.isChecked);
   const [spin, setRandomSpin] = useSpin();
   return (
     <div className="container is-fluid">
@@ -42,6 +23,9 @@ function App() {
             <Filter
               name={f.name}
               options={f.options}
+              toggleFilterOption={(filterName, optionValue) => {
+                toggleFilterOption(filterName, optionValue);
+              }}
             />
           ))}
           {/*<List*/}

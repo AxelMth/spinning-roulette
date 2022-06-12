@@ -7,10 +7,11 @@ interface Props {
     value: string | number;
     isChecked: boolean;
     setIsChecked: () => void;
-  }[]
+  }[];
+  toggleFilterOption: (filterName: string, optionValue: string | number) => void;
 }
 
-export const Filter = ({ name, options }: Props) => {
+export const Filter = ({ name, options, toggleFilterOption }: Props) => {
   const [isFilterActive, setIsFilterActive] = useState(false);
   const reset = () => {
     setIsFilterActive(false)
@@ -38,9 +39,7 @@ export const Filter = ({ name, options }: Props) => {
                   className="checkbox mr-2"
                   type="checkbox"
                   checked={option.isChecked}
-                  onChange={() => {
-                    option.setIsChecked();
-                  }}
+                  onChange={() => { toggleFilterOption(name, option.value); }}
                 />
                 {option.label}
               </label>

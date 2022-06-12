@@ -13,7 +13,7 @@ interface IFilter extends ICheckbox {
   options: IOption[]
 }
 
-export const useFilters = (): [IFilter[], () => void] => {
+export const useFilters = (): [IFilter[], (filterName: string, optionValue: string | number) => void, () => void] => {
   // Fetch database properties
   const [filters, setFilters] = useState<any[]>([]);
   useEffect(() => {
@@ -45,5 +45,14 @@ export const useFilters = (): [IFilter[], () => void] => {
       })),
     );
   };
-  return [menuFilters, resetFilters];
+  const toggleFilterOption = (filterName: string, optionValue: string | number) => {
+    setMenuFilters(_.map(menuFilters, f => ({
+      ...f,
+      options: _.map(f.options, o => ({
+        ...o,
+        isChecked: f.name === filterName && optionValue === o.value ? !o.isChecked : o.isChecked
+      }))
+    })))
+  }
+  return [menuFilters, toggleFilterOption, resetFilters];
 };
