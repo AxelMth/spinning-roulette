@@ -1,12 +1,13 @@
 import React from 'react';
-import { useFilters } from './hooks/filters.hook';
+import { IFilter, useFilters } from './hooks/filters.hook';
 import { useSpin } from './hooks/spin.hook';
 import { useRestaurants } from './hooks/restaurants.hook';
 import { FilterGroup } from './components/FilterGroup';
+import _ from 'lodash';
 
 export function App() {
   const [menuFilters, toggleFilterOption, resetFilters] = useFilters();
-  const [restaurants, setRestaurants] = useRestaurants();
+  const [restaurants] = useRestaurants(menuFilters);
   const reset = () => {
     // setAreChecked(initialState);
     resetFilters();
@@ -23,6 +24,10 @@ export function App() {
             filters={menuFilters}
             toggleFilterOption={toggleFilterOption}
           />
+          { _.map(restaurants, r => (<>
+            { r?.['Name']?.title?.[0]?.plain_text }
+            <br/>
+          </>)) }
           {/*<List*/}
           {/*  title="Liste des restaurants"*/}
           {/*  elements={elementsWithForm}*/}
