@@ -21,7 +21,7 @@
   clip: rect(0px, 250px, 500px, 0px);
 }
 
-$maxNumberOfItems: 15;
+$maxNumberOfItems: 50;
 @for $numberOfItems from 1 to $maxNumberOfItems {
   $sliceAngle: math.div(360deg, $numberOfItems);
   @for $i from 0 to $numberOfItems {

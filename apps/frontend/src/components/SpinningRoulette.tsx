@@ -21,14 +21,23 @@ const getBackgroundColor = (index: number): string => {
 };
 
 const SpinningRoulette = ({ elements, spin }: Props) => {
-  return elements.length < 2 ? (
+  const notEnoughtElements = elements.length < 2 ? (
     <div className="message">
       <div className="message-header">Erreur</div>
       <div className="message-body">
         Veuillez selectionner au moins 2 restaurants
       </div>
     </div>
-  ) : (
+  ) : null;
+  const tooMuchElements = elements.length > 50 ? (
+    <div className="message">
+      <div className="message-header">Erreur</div>
+      <div className="message-body">
+        Veuillez selectionner au maximum 50 restaurants
+      </div>
+    </div>
+  ) : null;
+  return notEnoughtElements ? notEnoughtElements : tooMuchElements ? tooMuchElements : (
     <div className="columns is-multiline is-centered">
       <div className="column is-flex is-justify-content-center pb-0">
         <i className="fas fa-caret-down fa-3x"></i>
@@ -46,7 +55,7 @@ const SpinningRoulette = ({ elements, spin }: Props) => {
                 className="hold"
               >
                 <div className={`slice-name-${elements.length}-${index + 1}`}>
-                  <div className="slice-text">{element.label}</div>
+                  <div className="slice-text">{element?.['Name']?.title?.[0]?.plain_text}</div>
                 </div>
                 <div
                   className={`roulette-part ${getBackgroundColor(index)}`}

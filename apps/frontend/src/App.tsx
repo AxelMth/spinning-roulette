@@ -1,10 +1,10 @@
 import React from 'react';
-import { IFilter, useFilters } from './hooks/filters.hook';
+import { useFilters } from './hooks/filters.hook';
 import { useSpin } from './hooks/spin.hook';
 import { useRestaurants } from './hooks/restaurants.hook';
-import { FilterGroup } from './components/FilterGroup';
 import _ from 'lodash';
 import List from './components/List';
+import SpinningRoulette from './components/SpinningRoulette';
 
 export function App() {
   const [menuFilters, toggleFilterOption, resetFilters] = useFilters();
@@ -36,22 +36,22 @@ export function App() {
               Reset
             </button>
           </div>
-          {/*{!_.isEmpty(elementsWithForm) ? (*/}
-          {/*  <div className="panel-block">*/}
-          {/*    <button*/}
-          {/*      className="button is-primary is-outlined is-fullwidth"*/}
-          {/*      onClick={() => setRandomSpin()}*/}
-          {/*    >*/}
-          {/*      Spin*/}
-          {/*    </button>*/}
-          {/*  </div>*/}
-          {/*) : null}*/}
+          {!_.isEmpty(restaurants) ? (
+            <div className="panel-block">
+              <button
+                className="button is-primary is-outlined is-fullwidth"
+                onClick={() => setRandomSpin()}
+              >
+                Spin
+              </button>
+            </div>
+          ) : null}
         </div>
         <div className="column is-full-mobile is-three-thirds-desktop">
-          {/*<SpinningRoulette*/}
-          {/*  elements={checkedElements}*/}
-          {/*  spin={spin}*/}
-          {/*></SpinningRoulette>*/}
+          <SpinningRoulette
+            elements={restaurants}
+            spin={spin}
+          ></SpinningRoulette>
         </div>
       </div>
     </div>

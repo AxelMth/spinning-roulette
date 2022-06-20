@@ -23,8 +23,9 @@ export const FilterGroup = ({ filters, toggleFilterOption }: Props) => {
     setFilterOptionsDisplayState(newFiltersDisplayState)
   }
   return <div className="columns is-multiline">
-    {filters.map(f => (
+    {filters.map((f, index) => (
       <Filter
+        key={index}
         filter={f}
         toggleFilterOption={toggleFilterOption}
         filterOptionsDisplayState={filterOptionsDisplayState[f.name]?.isActive}
