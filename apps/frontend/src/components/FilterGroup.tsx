@@ -22,7 +22,7 @@ export const FilterGroup = ({ filters, toggleFilterOption }: Props) => {
     newFiltersDisplayState = _(newFiltersDisplayState).mapValues(() => ({ isActive: false })).value();
     setFilterOptionsDisplayState(newFiltersDisplayState)
   }
-  return <>
+  return <div className="columns is-multiline">
     {filters.map(f => (
       <Filter
         filter={f}
@@ -32,5 +32,5 @@ export const FilterGroup = ({ filters, toggleFilterOption }: Props) => {
         hideAllDropdowns={hideAllDropdowns}
       />
     ))}
-  </>
+  </div>
 };

@@ -4,6 +4,7 @@ import { useSpin } from './hooks/spin.hook';
 import { useRestaurants } from './hooks/restaurants.hook';
 import { FilterGroup } from './components/FilterGroup';
 import _ from 'lodash';
+import List from './components/List';
 
 export function App() {
   const [menuFilters, toggleFilterOption, resetFilters] = useFilters();
@@ -20,22 +21,13 @@ export function App() {
           className="column is-full-mobile is-one-third-desktop"
           style={{ marginLeft: '-32px' }}
         >
-          <FilterGroup
+          <List
+            title="Liste des restaurants"
+            elements={restaurants}
+            reset={reset}
             filters={menuFilters}
             toggleFilterOption={toggleFilterOption}
-          />
-          { _.map(restaurants, r => (<>
-            { r?.['Name']?.title?.[0]?.plain_text }
-            <br/>
-          </>)) }
-          {/*<List*/}
-          {/*  title="Liste des restaurants"*/}
-          {/*  elements={elementsWithForm}*/}
-          {/*  costFilter={costFilter}*/}
-          {/*  typeFilter={typeFilter}*/}
-          {/*  dietFilter={dietFilter}*/}
-          {/*  reset={reset}*/}
-          {/*></List>*/}
+          ></List>
           <div className="panel-block">
             <button
               className="button is-link is-outlined is-fullwidth"

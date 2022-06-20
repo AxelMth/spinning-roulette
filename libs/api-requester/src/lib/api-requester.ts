@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getFilters() {
   try {
-    const response = await axios.get('http://localhost:5000/filters', {
+    const response = await axios.get('http://localhost:4000/filters', {
     });
     return response.data;
   } catch (error) {
@@ -12,7 +12,7 @@ export async function getFilters() {
 
 export async function getRestaurants() {
   try {
-    const response = await axios.get('http://localhost:5000/restaurants', {
+    const response = await axios.get('http://localhost:4000/restaurants', {
     });
     return response.data;
   } catch (error) {
