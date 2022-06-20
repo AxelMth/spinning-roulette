@@ -5,10 +5,12 @@ import { useRestaurants } from './hooks/restaurants.hook';
 import _ from 'lodash';
 import List from './components/List';
 import SpinningRoulette from './components/SpinningRoulette';
+import {useRestaurantsList} from './hooks/restaurants-list.hook';
 
 export function App() {
   const [menuFilters, toggleFilterOption, resetFilters] = useFilters();
   const [restaurants] = useRestaurants(menuFilters);
+  const [restaurantsList, toggleRestaurant] = useRestaurantsList(restaurants);
   const reset = () => {
     // setAreChecked(initialState);
     resetFilters();
@@ -23,7 +25,8 @@ export function App() {
         >
           <List
             title="Liste des restaurants"
-            elements={restaurants}
+            elements={restaurantsList}
+            toggleElement={toggleRestaurant}
             reset={reset}
             filters={menuFilters}
             toggleFilterOption={toggleFilterOption}
@@ -49,7 +52,7 @@ export function App() {
         </div>
         <div className="column is-full-mobile is-three-thirds-desktop">
           <SpinningRoulette
-            elements={restaurants}
+            elements={_.filter(restaurantsList, ({ isChecked: true }))}
             spin={spin}
           ></SpinningRoulette>
         </div>

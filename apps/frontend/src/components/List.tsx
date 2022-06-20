@@ -3,9 +3,10 @@ import React from 'react';
 import {IFilter} from '../hooks/filters.hook';
 import {FilterGroup} from './FilterGroup';
 
-interface Props<T> {
+interface Props {
   title: string;
-  elements: T[];
+  elements: { label: string, value: string, isChecked: boolean }[];
+  toggleElement: (value: string) => void;
   reset: () => void;
   filters: IFilter[];
   toggleFilterOption: (filterName: string, optionValue: string | number) => void;
@@ -14,19 +15,20 @@ interface Props<T> {
 const List = ({
   title,
   elements,
+  toggleElement,
   reset,
   filters,
   toggleFilterOption,
-}: Props<any>) => {
+}: Props) => {
   const listElements = elements.map((element, key) => (
     <label key={key} className="panel-block">
       <input
         className="checkbox"
         type="checkbox"
         checked={element.isChecked}
-        onChange={() => element.setIsChecked()}
+        onChange={() => toggleElement(element.value)}
       />
-      {element?.['Name']?.title?.[0]?.plain_text}
+      {element.label}
     </label>
   ));
   return (

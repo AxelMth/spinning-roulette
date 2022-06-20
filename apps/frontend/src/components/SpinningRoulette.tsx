@@ -1,9 +1,8 @@
 import React from 'react';
 import './SpinningRoulette.scss';
-import { IRestaurant } from '../constants/restaurants';
 
 interface Props {
-  elements: Array<IRestaurant>;
+  elements: { label: string; value: string; isChecked: boolean; }[];
   spin: number;
 }
 
@@ -55,7 +54,7 @@ const SpinningRoulette = ({ elements, spin }: Props) => {
                 className="hold"
               >
                 <div className={`slice-name-${elements.length}-${index + 1}`}>
-                  <div className="slice-text">{element?.['Name']?.title?.[0]?.plain_text}</div>
+                  <div className="slice-text">{element.label}</div>
                 </div>
                 <div
                   className={`roulette-part ${getBackgroundColor(index)}`}
