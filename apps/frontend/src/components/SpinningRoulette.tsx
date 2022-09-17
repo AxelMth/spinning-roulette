@@ -24,6 +24,7 @@ const SpinningRoulette = ({ elements }: Props) => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [winnerIndex, setWinnerIndex] = useState<number | null>(null);
   useEffect(() => {
+    if (!spin) return;
     setIsSpinning(true);
     setTimeout(() => {
       setIsSpinning(false);
@@ -121,7 +122,11 @@ const SpinningRoulette = ({ elements }: Props) => {
                 id={`slice-${elements.length}-${index + 1}`}
                 key={index}
                 className={`hold ${
-                  isSpinning ? '' : winnerIndex === index ? 'winner' : 'loser'
+                  spin && !isSpinning
+                    ? winnerIndex === index
+                      ? 'winner'
+                      : 'loser'
+                    : ''
                 }`}
               >
                 <div className={`slice-name-${elements.length}-${index + 1}`}>
