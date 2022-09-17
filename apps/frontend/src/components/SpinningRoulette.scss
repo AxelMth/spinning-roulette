@@ -49,7 +49,7 @@ $maxNumberOfItems: 50;
   $sliceAngle: math.div(360deg, $numberOfItems);
   @for $i from 0 to $numberOfItems {
     #slice-#{$numberOfItems}-#{$i + 1} {
-      transform: rotate($i * $sliceAngle);
+      transform: rotate($i * $sliceAngle + math.div($sliceAngle, 2));
     }
 
     #slice-#{$numberOfItems}-#{$i + 1} .roulette-part {
@@ -69,11 +69,12 @@ $maxNumberOfItems: 50;
       clip: rect(0px, 280px, 250px, 220px);
     }
   }
+
   @for $i from 1 to 50 {
     @keyframes spin-#{$numberOfItems}-#{$i} {
       to {
         transform: rotate(
-          ($numberOfItems * 2 + $i) * $sliceAngle + math.div($sliceAngle, 2)
+          -($numberOfItems + $i) * $sliceAngle
         );
       }
     }

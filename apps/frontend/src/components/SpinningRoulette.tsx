@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './SpinningRoulette.scss';
 import { useSpin } from '../hooks/spin.hook';
 
@@ -124,6 +124,7 @@ const SpinningRoulette = ({ elements }: Props) => {
           )}
         </div>
       </div>
+      <div>{elements[(spin - 1) % elements.length]?.label} a gagné</div>
     </div>
   );
 };
