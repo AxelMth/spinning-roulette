@@ -21,6 +21,15 @@ const getBackgroundColor = (index: number): string => {
 
 const SpinningRoulette = ({ elements }: Props) => {
   const [spin, setRandomSpin] = useSpin();
+  const [isSpinning, setIsSpinning] = useState(false);
+  const [winnerIndex, setWinnerIndex] = useState<number | null>(null);
+  useEffect(() => {
+    setIsSpinning(true);
+    setTimeout(() => {
+      setIsSpinning(false);
+      setWinnerIndex((spin - 1) % elements.length);
+    }, 2500);
+  }, [spin]);
   const notEnoughtElements =
     elements.length < 2 ? (
       <div className="message">
@@ -111,7 +120,9 @@ const SpinningRoulette = ({ elements }: Props) => {
               <div
                 id={`slice-${elements.length}-${index + 1}`}
                 key={index}
-                className="hold"
+                className={`hold ${
+                  isSpinning ? '' : winnerIndex === index ? 'winner' : 'loser'
+                }`}
               >
                 <div className={`slice-name-${elements.length}-${index + 1}`}>
                   <div className="slice-text">{element.label}</div>
