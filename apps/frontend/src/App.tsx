@@ -4,7 +4,7 @@ import { useSpin } from './hooks/spin.hook';
 import { useRestaurants } from './hooks/restaurants.hook';
 import _ from 'lodash';
 import List from './components/List';
-import SpinningRoulette from './components/SpinningRoulette';
+import Wheel from './components/Wheel';
 import { useRestaurantsList } from './hooks/restaurants-list.hook';
 
 export function App() {
@@ -40,9 +40,9 @@ export function App() {
           </div>
         </div>
         <div className="column is-full-mobile is-three-thirds-desktop">
-          <SpinningRoulette
+          <Wheel
             elements={_.filter(restaurantsList, { isChecked: true })}
-          ></SpinningRoulette>
+          ></Wheel>
         </div>
       </div>
     </div>

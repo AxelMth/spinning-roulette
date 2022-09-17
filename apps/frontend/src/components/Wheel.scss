@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-.roulette {
+.wheel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +61,7 @@
   }
 }
 
-.roulette-part {
+.wheel-part {
   position: absolute;
   width: 500px;
   height: 500px;
@@ -77,7 +77,7 @@ $maxNumberOfItems: 50;
       transform: rotate($i * $sliceAngle + math.div($sliceAngle, 2));
     }
 
-    #slice-#{$numberOfItems}-#{$i + 1} .roulette-part {
+    #slice-#{$numberOfItems}-#{$i + 1} .wheel-part {
       transform: rotate($sliceAngle);
     }
 
