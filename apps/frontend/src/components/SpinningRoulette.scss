@@ -1,6 +1,9 @@
 @use 'sass:math';
 
 .roulette {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   height: 500px;
   width: 500px;
@@ -10,7 +13,18 @@
   position: absolute;
   width: 500px;
   height: 500px;
-  clip: rect(0px, 500px, 500px, 251px);
+  clip: rect(0px, 500px, 500px, 250px);
+}
+
+.wheel-knob {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  height: 554px;
+}
+
+.spin-btn {
+  cursor: pointer;
 }
 
 .roulette-part {
@@ -66,15 +80,15 @@ $maxNumberOfItems: 50;
 }
 
 .background-blue {
-  background-color: darken(#ebf0fc, 20%);
+  background-color: darken(#ebf0fc, 30%);
 }
 
 .background-red {
-  background-color: darken(#fdeef1, 20%);
+  background-color: darken(#fdeef1, 30%);
 }
 
 .background-green {
-  background-color: darken(#ebf8f3, 20%);
+  background-color: darken(#ebf8f3, 30%);
 }
 
 .slice-text {

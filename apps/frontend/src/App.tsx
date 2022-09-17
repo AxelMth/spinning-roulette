@@ -5,7 +5,7 @@ import { useRestaurants } from './hooks/restaurants.hook';
 import _ from 'lodash';
 import List from './components/List';
 import SpinningRoulette from './components/SpinningRoulette';
-import {useRestaurantsList} from './hooks/restaurants-list.hook';
+import { useRestaurantsList } from './hooks/restaurants-list.hook';
 
 export function App() {
   const [menuFilters, toggleFilterOption, resetFilters] = useFilters();
@@ -15,7 +15,6 @@ export function App() {
     // setAreChecked(initialState);
     resetFilters();
   };
-  const [spin, setRandomSpin] = useSpin();
   return (
     <div className="container is-fluid">
       <div className="columns is-multiline">
@@ -39,21 +38,10 @@ export function App() {
               Reset
             </button>
           </div>
-          {!_.isEmpty(restaurants) ? (
-            <div className="panel-block">
-              <button
-                className="button is-primary is-outlined is-fullwidth"
-                onClick={() => setRandomSpin()}
-              >
-                Spin
-              </button>
-            </div>
-          ) : null}
         </div>
         <div className="column is-full-mobile is-three-thirds-desktop">
           <SpinningRoulette
-            elements={_.filter(restaurantsList, ({ isChecked: true }))}
-            spin={spin}
+            elements={_.filter(restaurantsList, { isChecked: true })}
           ></SpinningRoulette>
         </div>
       </div>
