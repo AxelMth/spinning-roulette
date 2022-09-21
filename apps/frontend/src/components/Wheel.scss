@@ -16,20 +16,19 @@
   clip: rect(0px, 500px, 500px, 250px);
 }
 
-.wheel-knob {
+.winner-board {
   position: absolute;
-  top: -15px;
-  left: -15px;
-  height: 554px;
+  border-radius: 20px;
+  border: 5px solid white;
+  box-shadow: 5px 5px 5px;
+  padding: 20px;
+  top: 380px;
+  animation: 1s fade-in;
 }
 
-.spin-btn {
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.spin-btn:hover {
-  transform: scale(1.1);
+.winner-name {
+  color: white;
+  font-weight: 600;
 }
 
 @keyframes slidein {

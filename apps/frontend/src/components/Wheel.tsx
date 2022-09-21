@@ -23,6 +23,7 @@ const getBackgroundColor = (index: number): string => {
 const Wheel = ({ elements }: Props) => {
   const [spin, setRandomSpin] = useSpin();
   const [isSpinning, setIsSpinning] = useState(false);
+  const [hasWinner, setHasWinner] = useState(false);
   const [winnerIndex, setWinnerIndex] = useState<number | null>(null);
   useEffect(() => {
     if (!spin) return;
@@ -32,6 +33,13 @@ const Wheel = ({ elements }: Props) => {
       setWinnerIndex((spin - 1) % elements.length);
     }, 2500);
   }, [spin]);
+  useEffect(() => {
+    if (!winnerIndex) return;
+    setHasWinner(false);
+    setTimeout(() => {
+      setHasWinner(true);
+    }, 2000);
+  }, [winnerIndex]);
   const notEnoughtElements =
     elements.length < 2 ? (
       <div className="message">
@@ -55,38 +63,47 @@ const Wheel = ({ elements }: Props) => {
   ) : tooMuchElements ? (
     tooMuchElements
   ) : (
-    <div className="columns is-multiline is-centered">
-      <div
-        className="column is-full is-flex is-justify-content-center is-align-items-center"
-        style={{ position: 'relative' }}
-      >
-        <WheelKnob setSpin={setRandomSpin} />
-        <div className={`wheel spin-animation-${elements.length}-${spin}`}>
-          {elements.map(
-            (element: any, index: number): JSX.Element => (
-              <div
-                id={`slice-${elements.length}-${index + 1}`}
-                key={index}
-                className={`hold ${
-                  spin && !isSpinning
-                    ? winnerIndex === index
-                      ? 'winner'
-                      : 'loser'
-                    : ''
-                }`}
-              >
-                <div className={`slice-name-${elements.length}-${index + 1}`}>
-                  <div className="slice-text">{element.label}</div>
-                </div>
+    <div className="columns is-multiline is-gapless is-centered is-variable">
+      <div className="column is-full is-flex is-justify-content-center is-align-items-center p-auto">
+        <div style={{ position: 'relative' }}>
+          <WheelKnob setSpin={() => setRandomSpin()} />
+          <div className={`wheel spin-animation-${elements.length}-${spin}`}>
+            {elements.map(
+              (element: any, index: number): JSX.Element => (
                 <div
-                  className={`wheel-part ${getBackgroundColor(index)}`}
-                ></div>
-              </div>
-            )
-          )}
+                  id={`slice-${elements.length}-${index + 1}`}
+                  key={index}
+                  className={`hold ${
+                    spin && !isSpinning
+                      ? winnerIndex === index
+                        ? 'winner'
+                        : 'loser'
+                      : ''
+                  }`}
+                >
+                  <div className={`slice-name-${elements.length}-${index + 1}`}>
+                    <div className="slice-text">{element.label}</div>
+                  </div>
+                  <div
+                    className={`wheel-part ${getBackgroundColor(index)}`}
+                  ></div>
+                </div>
+              )
+            )}
+          </div>
         </div>
+        {hasWinner && !isSpinning ? (
+          <div
+            className={`winner-board ${getBackgroundColor(
+              winnerIndex as number
+            )}`}
+          >
+            <span className="winner-name">
+              {elements[winnerIndex as number]?.label} a gagné
+            </span>
+          </div>
+        ) : null}
       </div>
-      <div>{elements[(spin - 1) % elements.length]?.label} a gagné</div>
     </div>
   );
 };
