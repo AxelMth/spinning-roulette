@@ -12,25 +12,29 @@ export const FilterGroup = ({ filters, toggleFilterOption }: Props) => {
   const [filterOptionsDisplayState, setFilterOptionsDisplayState] = useState<Record<string, { isActive: boolean }>>(_(filters).keyBy('name').mapValues(() => ({
     isActive: false,
   })).value());
-  const toggleFilterOptions = (filterName: string) => {
-    const newFiltersDisplayState = _.clone(filterOptionsDisplayState);
-    newFiltersDisplayState[filterName] = { isActive: !newFiltersDisplayState[filterName]?.isActive || false };
-    setFilterOptionsDisplayState(newFiltersDisplayState)
+  const toggleFilterOptions = (filterName: string): void => {
+    console.log("toggleFilterOptions", filterName);
+    setFilterOptionsDisplayState({
+      ...filterOptionsDisplayState,
+      [filterName]: { isActive: !filterOptionsDisplayState[filterName]?.isActive || false }
+    });
   }
-  const hideAllDropdowns = () => {
-    let newFiltersDisplayState = _.clone(filterOptionsDisplayState);
-    newFiltersDisplayState = _(newFiltersDisplayState).mapValues(() => ({ isActive: false })).value();
-    setFilterOptionsDisplayState(newFiltersDisplayState)
+  const closeFilterOptions = (filterName: string): void => {
+    console.log("closeFilterOptions", filterName);
+    setFilterOptionsDisplayState({
+      ...filterOptionsDisplayState,
+      [filterName]: { isActive: false }
+    });
   }
-  return <div className="columns is-multiline">
-    {filters.map((f, index) => (
+  return <div className="p-1" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+    {filters.map((f) => (
       <Filter
-        key={index}
+        key={f.name}
         filter={f}
         toggleFilterOption={toggleFilterOption}
         filterOptionsDisplayState={filterOptionsDisplayState[f.name]?.isActive}
         toggleFilterOptions={() => toggleFilterOptions(f.name)}
-        hideAllDropdowns={hideAllDropdowns}
+        closeFilterOptions={() => closeFilterOptions(f.name)}
       />
     ))}
   </div>
