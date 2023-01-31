@@ -21,24 +21,36 @@ const getBackgroundColor = (index: number): string => {
 };
 
 const Wheel = ({ elements }: Props) => {
-  const [spin, setRandomSpin] = useSpin();
+  const [spin, setRandomSpin, resetSpin] = useSpin();
   const [isSpinning, setIsSpinning] = useState(false);
   const [hasWinner, setHasWinner] = useState(false);
   const [winnerIndex, setWinnerIndex] = useState<number | null>(null);
   useEffect(() => {
+    if (!elements.length) return;
+    resetSpin();
+    setIsSpinning(false);
+    setHasWinner(false);
+    setWinnerIndex(null);
+  }, [elements]);
+  useEffect(() => {
     if (!spin) return;
     setIsSpinning(true);
-    setTimeout(() => {
+  }, [spin]);
+  useEffect(() => {
+    if (!isSpinning) return;
+    let timeout = setTimeout(() => {
       setIsSpinning(false);
       setWinnerIndex((spin - 1) % elements.length);
     }, 2500);
-  }, [spin]);
+    return () => clearTimeout(timeout)
+  }, [isSpinning])
   useEffect(() => {
     if (!winnerIndex) return;
     setHasWinner(false);
-    setTimeout(() => {
+    let timeout = setTimeout(() => {
       setHasWinner(true);
     }, 2000);
+    return () => clearTimeout(timeout)
   }, [winnerIndex]);
   const notEnoughtElements =
     elements.length < 2 ? (
@@ -66,7 +78,9 @@ const Wheel = ({ elements }: Props) => {
     <div className="columns is-multiline is-gapless is-centered is-variable">
       <div className="column is-full is-flex is-justify-content-center is-align-items-center p-auto">
         <div style={{ position: 'relative' }}>
-          <WheelKnob setSpin={() => setRandomSpin()} />
+          <WheelKnob setSpin={() => {
+            if (!isSpinning) setRandomSpin()
+          }} />
           <div className={`wheel spin-animation-${elements.length}-${spin}`}>
             {elements.map(
               (element: any, index: number): JSX.Element => (

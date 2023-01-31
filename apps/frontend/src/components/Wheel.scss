@@ -24,6 +24,7 @@
   padding: 20px;
   top: 380px;
   animation: 1s fade-in;
+  z-index: 1;
 }
 
 .winner-name {
@@ -104,7 +105,7 @@ $maxNumberOfItems: 50;
     }
   }
 
-  @for $i from 1 to 50 {
+  @for $i from 1 to 100 {
     @keyframes spin-#{$numberOfItems}-#{$i} {
       to {
         transform: rotate(
