@@ -1,8 +1,7 @@
 import React from 'react';
-import { useFilters } from './hooks/filters.hook';
-import { useSpin } from './hooks/spin.hook';
-import { useRestaurants } from './hooks/restaurants.hook';
 import _ from 'lodash';
+import { useFilters } from './hooks/filters.hook';
+import { useRestaurants } from './hooks/restaurants.hook';
 import List from './components/List';
 import Wheel from './components/Wheel';
 import { useRestaurantsList } from './hooks/restaurants-list.hook';
