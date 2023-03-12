@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-$width: 1000px;
+$width: 100vh;
 .wheel {
   display: flex;
   justify-content: center;
@@ -92,7 +92,7 @@ $maxNumberOfItems: 50;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      clip: rect(0px, $width / 2 + 30px, $width / 2, $width / 2 - 30px);
+      clip: rect(0px, calc(#{$width} / 2 + 30px), $width / 2, calc(#{$width} / 2 - 30px));
     }
 
     #slice-#{$numberOfItems}-#{$i + 1}.winner {
