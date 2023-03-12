@@ -1,31 +1,33 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {IFilter} from '../hooks/filters.hook';
-import { useOutsideClick } from '../hooks/useOutsideClick.hook';
 
 interface Props {
   filter: IFilter;
   toggleFilterOption: (filterName: string, optionValue: string | number) => void;
-  filterOptionsDisplayState: boolean;
-  toggleFilterOptions: () => void;
-  closeFilterOptions: () => void;
-  clickOutsideMenu: () => void;
+  isActive: boolean;
+  openFilterMenu: () => void;
+  closeFilterMenu: () => void;
 }
 
 export const Filter = ({
                          filter,
                          toggleFilterOption,
-                         filterOptionsDisplayState,
-                         toggleFilterOptions,
-                         closeFilterOptions,
-                         clickOutsideMenu,
+                         isActive,
+                         openFilterMenu,
+                         closeFilterMenu,
                        }: Props) => {
-  const downdropMenuRef = useRef(null);
-  useOutsideClick(downdropMenuRef, () => {
-    clickOutsideMenu()
-  });
+  // const downdropMenuRef = useRef(null);
+  // useOutsideClick(downdropMenuRef, function () {
+  //   console.log('outOutsideClick', filter, isActive)
+  //   if (isActive) closeFilterMenu()
+  // });
+  const toggleFilterMenu = () => {
+    if (isActive) closeFilterMenu()
+    else openFilterMenu()
+  }
   return (
     <div
-      className={`dropdown mr-2 ${filterOptionsDisplayState ? 'is-active' : ''}`}
+      className={`dropdown mr-2 ${isActive ? 'is-active' : ''}`}
     >
       <div className="dropdown-trigger">
         <button
@@ -33,13 +35,13 @@ export const Filter = ({
           aria-haspopup="true"
           aria-controls="dropdown-menu"
           onClick={() => {
-            toggleFilterOptions()
+            toggleFilterMenu()
           }}
         >
           {filter.name}
         </button>
       </div>
-      <div className="dropdown-menu" id="dropdown-menu" role="menu" ref={downdropMenuRef}>
+      <div className="dropdown-menu" id="dropdown-menu" role="menu">
         <div className="dropdown-content">
           {filter.options.map((option, index) => (
             <label key={index} className="dropdown-item">

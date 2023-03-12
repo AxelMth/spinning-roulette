@@ -37,6 +37,7 @@ const List = ({
       <FilterGroup
         filters={filters}
         toggleFilterOption={toggleFilterOption}
+        reset={reset}
       />
       {_.isEmpty(elements) ? (
         <div className="p-2">

@@ -11,7 +11,6 @@ export function App() {
   const [restaurants] = useRestaurants(menuFilters);
   const [restaurantsList, toggleRestaurant] = useRestaurantsList(restaurants);
   const reset = () => {
-    // setAreChecked(initialState);
     resetFilters();
   };
   return (
@@ -29,14 +28,6 @@ export function App() {
             filters={menuFilters}
             toggleFilterOption={toggleFilterOption}
           ></List>
-          <div className="panel-block">
-            <button
-              className="button is-link is-outlined is-fullwidth"
-              onClick={() => reset()}
-            >
-              Reset
-            </button>
-          </div>
         </div>
         <div className="column is-full-mobile is-three-thirds-desktop">
           <Wheel
