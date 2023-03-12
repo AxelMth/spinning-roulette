@@ -31,6 +31,7 @@ $size: 80vh;
 .winner-name {
   color: white;
   font-weight: 600;
+  font-size: 1rem;
 }
 
 @keyframes slidein {
@@ -141,4 +142,5 @@ $maxNumberOfItems: 50;
   color: white;
   margin-top: 20px;
   writing-mode: vertical-lr;
+  font-size: 1rem;
 }
