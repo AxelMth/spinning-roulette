@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import {IFilter} from '../hooks/filters.hook';
 import { useOutsideClick } from '../hooks/useOutsideClick.hook';
 
@@ -8,6 +8,7 @@ interface Props {
   filterOptionsDisplayState: boolean;
   toggleFilterOptions: () => void;
   closeFilterOptions: () => void;
+  clickOutsideMenu: () => void;
 }
 
 export const Filter = ({
@@ -16,14 +17,14 @@ export const Filter = ({
                          filterOptionsDisplayState,
                          toggleFilterOptions,
                          closeFilterOptions,
+                         clickOutsideMenu,
                        }: Props) => {
-  const ref = useRef(null);
-  useOutsideClick(ref, () => {
-    closeFilterOptions()
+  const downdropMenuRef = useRef(null);
+  useOutsideClick(downdropMenuRef, () => {
+    clickOutsideMenu()
   });
   return (
     <div
-      ref={ref}
       className={`dropdown mr-2 ${filterOptionsDisplayState ? 'is-active' : ''}`}
     >
       <div className="dropdown-trigger">
@@ -38,7 +39,7 @@ export const Filter = ({
           {filter.name}
         </button>
       </div>
-      <div className="dropdown-menu" id="dropdown-menu" role="menu">
+      <div className="dropdown-menu" id="dropdown-menu" role="menu" ref={downdropMenuRef}>
         <div className="dropdown-content">
           {filter.options.map((option, index) => (
             <label key={index} className="dropdown-item">

@@ -26,6 +26,9 @@ export const FilterGroup = ({ filters, toggleFilterOption }: Props) => {
       [filterName]: { isActive: false }
     });
   }
+  const clickOutsideMenu = (filterName: string): void => {
+    console.log('clickOutsideMenu', filterName)
+  }
   return <div className="p-1" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
     {filters.map((f) => (
       <Filter
@@ -35,6 +38,7 @@ export const FilterGroup = ({ filters, toggleFilterOption }: Props) => {
         filterOptionsDisplayState={filterOptionsDisplayState[f.name]?.isActive}
         toggleFilterOptions={() => toggleFilterOptions(f.name)}
         closeFilterOptions={() => closeFilterOptions(f.name)}
+        clickOutsideMenu={() => clickOutsideMenu(f.name)}
       />
     ))}
   </div>
