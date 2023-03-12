@@ -1,9 +1,9 @@
-$width: 80vh;
+$size: 80vh;
 .wheel-knob {
   position: absolute;
-  top: -27px * ($width / 500px);
-  left: -27px * ($width / 500px);
-  height: $width + (54px * $width / 500px);
+  top: -27px * ($size / 500px);
+  left: -27px * ($size / 500px);
+  height: $size + (54px * $size / 500px);
 }
 
 .spin-btn {
