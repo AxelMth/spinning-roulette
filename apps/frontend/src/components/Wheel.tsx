@@ -7,7 +7,9 @@ interface Props {
   elements: { label: string; value: string; isChecked: boolean }[];
 }
 
-const getBackgroundColor = (index: number): string => {
+const getBackgroundColor = (index: number, count: number): string => {
+  if (count % 3 === 1 && index === count-1) return getBackgroundColor(1, count+1);
+  if (count % 3 === 1 && index === count-2) return getBackgroundColor(2, count+1);
   switch (index % 3) {
     case 0:
       return 'background-blue';
@@ -99,7 +101,7 @@ const Wheel = ({ elements }: Props) => {
                     <div className="slice-text">{element.label}</div>
                   </div>
                   <div
-                    className={`wheel-part ${getBackgroundColor(index)}`}
+                    className={`wheel-part ${getBackgroundColor(index, elements.length)}`}
                   ></div>
                 </div>
               )
@@ -109,7 +111,7 @@ const Wheel = ({ elements }: Props) => {
         {hasWinner && !isSpinning ? (
           <div
             className={`winner-board ${getBackgroundColor(
-              winnerIndex as number
+              winnerIndex as number, elements.length
             )}`}
           >
             <span className="winner-name">
