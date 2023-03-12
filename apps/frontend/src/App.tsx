@@ -29,7 +29,7 @@ export function App() {
             toggleFilterOption={toggleFilterOption}
           ></List>
         </div>
-        <div className="column is-full-mobile is-three-thirds-desktop">
+        <div className="column is-full-mobile is-three-thirds-desktop mt-6">
           <Wheel
             elements={_.filter(restaurantsList, { isChecked: true })}
           ></Wheel>
