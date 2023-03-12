@@ -1,19 +1,20 @@
 @use 'sass:math';
 
+$width: 1000px;
 .wheel {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  height: 500px;
-  width: 500px;
+  height: $width;
+  width: $width;
 }
 
 .hold {
   position: absolute;
-  width: 500px;
-  height: 500px;
-  clip: rect(0px, 500px, 500px, 250px);
+  width: $width;
+  height: $width;
+  clip: rect(0px, $width, $width, $width / 2);
 }
 
 .winner-board {
@@ -63,10 +64,10 @@
 
 .wheel-part {
   position: absolute;
-  width: 500px;
-  height: 500px;
+  width: $width;
+  height: $width;
   border-radius: 100%;
-  clip: rect(0px, 250px, 500px, 0px);
+  clip: rect(0px, $width / 2, $width, 0px);
 }
 
 $maxNumberOfItems: 50;
@@ -84,14 +85,14 @@ $maxNumberOfItems: 50;
     .slice-name-#{$numberOfItems}-#{$i + 1} {
       position: absolute;
       transform: rotate(math.div($sliceAngle, 2));
-      height: 500px;
-      width: 500px;
+      height: $width;
+      width: $width;
       z-index: 1;
       color: black;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      clip: rect(0px, 280px, 250px, 220px);
+      clip: rect(0px, $width / 2 + 30px, $width / 2, $width / 2 - 30px);
     }
 
     #slice-#{$numberOfItems}-#{$i + 1}.winner {
