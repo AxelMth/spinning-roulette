@@ -11,13 +11,14 @@ interface Props {
 export const FilterGroup = ({filters, toggleFilterOption, reset}: Props) => {
   const [activeFilterName, setActiveFilterName] = useState<string | null>(null);
   return <div className="p-1" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-    {filters.map((f) => <Filter
-      key={f.name}
+    {filters.map((f, filterIndex) => <Filter
+      key={filterIndex}
       filter={f}
       toggleFilterOption={toggleFilterOption}
       isActive={activeFilterName === f.name}
-      openFilterMenu={() => {
-        setActiveFilterName(f.name);
+      toggleFilterMenu={() => {
+        if (activeFilterName === f.name) setActiveFilterName(null)
+        else setActiveFilterName(f.name)
       }}
       closeFilterMenu={() => {
         setActiveFilterName(null)
