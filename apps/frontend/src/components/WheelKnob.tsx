@@ -45,19 +45,19 @@ const WheelKnob = ({ setSpin }: Props) => {
                    A 24.538846153846155 24.538846153846155 0 1 1 -8.161677628595879 -22.24057152938846
                    Z"
           fill="black"
-          stroke-width="3.19005"
-          stroke-linejoin="round"
+          strokeWidth="3.19005"
+          strokeLinejoin="round"
           stroke="white"
-          pointer-events="auto"
+          pointerEvents="auto"
         ></path>
         <text
-          font-size="16.789736842105263"
-          font-family="VanillaExtractRegular"
+          fontSize="16.789736842105263"
+          fontFamily="VanillaExtractRegular"
           fill="white"
           height="16.789736842105263"
-          text-anchor="middle"
+          textAnchor="middle"
           y="6.3801"
-          pointer-events="none"
+          pointerEvents="none"
         >
           Spin
         </text>
