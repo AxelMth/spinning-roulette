@@ -37,6 +37,9 @@ export const Filter = ({
           ref={downdropTriggerBtnRef}
         >
           {filter.name}
+          <span className="tag is-info is-rounded is-light ml-1">
+            {filter.options.reduce<number>((count, current) => current.isChecked ? count + 1 : count, 0)}
+          </span>
         </button>
       </div>
       <div className="dropdown-menu" id="dropdown-menu" role="menu">
