@@ -10,7 +10,7 @@ interface Props {
 
 export const FilterGroup = ({filters, toggleFilterOption, reset}: Props) => {
   const [activeFilterName, setActiveFilterName] = useState<string | null>(null);
-  return <div className="p-1" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
+  return <div className="p-1 is-flex is-justify-content-center" style={{flexWrap: 'wrap'}}>
     {filters.map((f, filterIndex) => <Filter
       key={filterIndex}
       filter={f}

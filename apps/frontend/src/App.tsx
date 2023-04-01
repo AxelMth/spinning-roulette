@@ -14,11 +14,10 @@ export function App() {
     resetFilters();
   };
   return (
-    <div className="container is-fluid">
+    <div className="container is-fluid is-marginless is-paddingless">
       <div className="columns is-multiline">
         <div
-          className="column is-full-mobile is-one-third-desktop"
-          style={{ marginLeft: '-32px' }}
+          className="column is-full-mobile is-one-third-tablet"
         >
           <List
             title="Liste des restaurants"

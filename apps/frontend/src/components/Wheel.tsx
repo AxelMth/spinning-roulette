@@ -56,7 +56,7 @@ const Wheel = ({ elements }: Props) => {
   }, [winnerIndex]);
   const notEnoughtElements =
     elements.length < 2 ? (
-      <div className="message">
+      <div className="message m-5">
         <div className="message-header">Erreur</div>
         <div className="message-body">
           Veuillez selectionner au moins 2 restaurants
@@ -65,7 +65,7 @@ const Wheel = ({ elements }: Props) => {
     ) : null;
   const tooMuchElements =
     elements.length > 50 ? (
-      <div className="message">
+      <div className="message m-5">
         <div className="message-header">Erreur</div>
         <div className="message-body">
           Veuillez selectionner au maximum 50 restaurants
