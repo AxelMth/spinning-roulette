@@ -1,0 +1,18 @@
+$asideMenuWidth: 350px;
+
+.aside-menu {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: $asideMenuWidth;
+  background-color: transparent;
+  z-index: 1;
+  overflow: auto;
+}
+
+.main-content {
+  margin-left: $asideMenuWidth;
+  padding-top: 30px;
+  height: 100vh;
+  overflow: hidden;
+}
